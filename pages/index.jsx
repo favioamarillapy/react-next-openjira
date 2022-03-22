@@ -1,14 +1,10 @@
+import { Typography } from '@mui/material'
+import { Layout } from './../components/Layout/index'
+
 export default function Home() {
   return (
-    <div>
-
-      <main >
-        <h1 >
-          Welcome to <a href="#">Open Jira!</a>
-        </h1>
-
-      </main>
-
-    </div>
+    <Layout>
+      <Typography>Welcome to Open Jira !!!</Typography>
+    </Layout>
   )
 }
