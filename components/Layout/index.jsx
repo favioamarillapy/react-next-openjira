@@ -4,7 +4,7 @@ import { Sidebar } from '../ui/Sidebar'
 
 export const Layout = ({ children }) => {
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1, marginLeft: 0 }}>
 
       <Navbar />
 

@@ -1,24 +1,32 @@
-import { InboxOutlined, MailOutlined } from '@mui/icons-material'
-import {
-  Box, Drawer, List, ListItem, ListItemIcon, ListItemText,
-  Typography
-} from '@mui/material'
+import { useContext } from 'react'
+import { ChevronLeft, ChevronRight, InboxOutlined, MailOutlined } from '@mui/icons-material'
+import { Box, Divider, Drawer, IconButton, List, ListItem, ListItemIcon, ListItemText, Typography, useTheme } from '@mui/material'
+import { UIContext } from '../../../context/ui'
 
+const menuItems = ['Inbox', 'Starred', 'Draft']
 
 export const Sidebar = () => {
 
-  const menuItems = ['Inbox', 'Starred', 'Draft']
+  const theme = useTheme();
+  const { sideMenuOpen, closeSidebar } = useContext(UIContext);
+
 
   return (
     <Drawer
       anchor='left'
-      open={true}
-      onClose={() => console.log('close')}>
+      open={sideMenuOpen}
+      onClose={closeSidebar}>
+
 
       <Box sx={{ width: 250 }}>
-        <Box sx={{ padding: '5px 10px' }}>
+
+        <Box sx={{ padding: '10px 10px', display: 'flex', justifyContent: 'space-between', ...theme.mixins.toolbar }}>
           <Typography variant='h4'> Menu </Typography>
+          <IconButton onClick={closeSidebar}>
+            {theme.direction === 'ltr' ? <ChevronLeft /> : <ChevronRight />}
+          </IconButton>
         </Box>
+
 
         <List>
           {
