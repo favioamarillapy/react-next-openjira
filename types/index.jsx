@@ -1,0 +1,2 @@
+export const UI_OPEN_SIDEBAR = 'UI_OPEN_SIDEBAR'
+export const UI_CLOSE_SIDEBAR = 'UI_CLOSE_SIDEBAR'
