@@ -1,10 +1,16 @@
+import { useContext, useMemo } from 'react';
 import { List, Paper } from '@mui/material'
 import { EntryCard } from './'
+import { EntryContext } from '../../context/entries'
 
 
-export const EntryList = () => {
+export const EntryList = ({ status }) => {
+
+  const { entries } = useContext(EntryContext);
+  const entriesByStatus =
+    useMemo(() => entries.filter(entry => entry.status === status), [entries])
+
   return (
-    // TODO: The <div> tag was used because it has an onDrop event
     <div>
       <Paper sx={{
         height: 'calc(100vh - 180px)',
@@ -15,14 +21,11 @@ export const EntryList = () => {
       }}>
 
         <List sx={{ opacity: 1, padding: 1 }}>
-          <EntryCard></EntryCard>
-          <EntryCard></EntryCard>
-          <EntryCard></EntryCard>
-          <EntryCard></EntryCard>
-          <EntryCard></EntryCard>
-          <EntryCard></EntryCard>
-          <EntryCard></EntryCard>
-          <EntryCard></EntryCard>
+          {
+            entriesByStatus.map(entry => (
+              <EntryCard key={entry._id} {...entry} />
+            ))
+          }
         </List>
 
       </Paper>

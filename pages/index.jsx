@@ -10,21 +10,21 @@ export default function Home() {
         <Grid item xs={12} md={4}>
           <Card sx={{ height: 'calc(100vh - 100px)' }} >
             <CardHeader title="Backlog" />
-            <EntryList />
+            <EntryList status='backlog' />
           </Card>
         </Grid>
 
         <Grid item xs={12} md={4}>
           <Card sx={{ height: 'calc(100vh - 100px)' }}>
             <CardHeader title="In Progress" />
-            <EntryList />
+            <EntryList status='progress' />
           </Card>
         </Grid>
 
         <Grid item xs={12} md={4}>
           <Card sx={{ height: 'calc(100vh - 100px)' }}>
             <CardHeader title="Finished" />
-            <EntryList />
+            <EntryList status='finished' />
           </Card>
 
         </Grid>

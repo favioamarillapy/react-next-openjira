@@ -8,19 +8,19 @@ const INITIAL_STATE = {
     {
       _id: uuidv4(),
       description: '42i34mn34923bsf sdfoi0909 ifjashd ds900d ',
-      status: 'pending',
+      status: 'backlog',
       createdAt: Date.now()
     },
     {
       _id: uuidv4(),
       description: 'asdiahjsd ajshdklj adlkjahsdaskdoinasdbn ',
-      status: 'in progress',
+      status: 'progress',
       createdAt: Date.now() - 100000
     },
     {
       _id: uuidv4(),
       description: 'asda.sdopak s asd8972490823kjndsdnfs9098',
-      status: 'pending',
+      status: 'finished',
       createdAt: Date.now() - 1000000
     }
   ]
