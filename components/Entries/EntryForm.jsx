@@ -1,9 +1,13 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 
 import { AddOutlined, CloseOutlined, SaveOutlined } from '@mui/icons-material'
 import { Box, Button, TextField } from '@mui/material'
 
+import { EntryContext } from '../../context/entries';
+
 export const EntryForm = () => {
+
+  const { addEntry } = useContext(EntryContext)
 
   const [isAdding, setIsAdding] = useState(false)
   const [inputValue, setInputValue] = useState('')
@@ -19,9 +23,7 @@ export const EntryForm = () => {
 
     if (inputValue.length == 0) return
 
-    console.log(inputValue);
-
-    setInputValue('')
+    addEntry(inputValue)
   }
 
   return (
