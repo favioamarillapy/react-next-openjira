@@ -1,5 +1,5 @@
-import { Card, CardContent, CardHeader, Grid } from '@mui/material'
-import { EntryList } from '../components/EntryList/EntryList'
+import { Card, CardHeader, Grid } from '@mui/material'
+import { EntryForm, EntryList } from '../components/Entries'
 import { Layout } from './../components/Layout/index'
 
 export default function Home() {
@@ -10,6 +10,7 @@ export default function Home() {
         <Grid item xs={12} md={4}>
           <Card sx={{ height: 'calc(100vh - 100px)' }} >
             <CardHeader title="Backlog" />
+            <EntryForm />
             <EntryList status='backlog' />
           </Card>
         </Grid>

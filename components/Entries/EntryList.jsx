@@ -1,6 +1,6 @@
 import { useContext, useMemo } from 'react';
 import { List, Paper } from '@mui/material'
-import { EntryCard } from './'
+import { EntryCard } from '.'
 import { EntryContext } from '../../context/entries'
 
 
