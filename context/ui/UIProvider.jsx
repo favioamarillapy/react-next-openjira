@@ -1,9 +1,10 @@
 import { useReducer } from 'react'
-import { UI_CLOSE_SIDEBAR, UI_OPEN_SIDEBAR } from '../../types'
+import { UI_ADD_ENTRY, UI_CLOSE_SIDEBAR, UI_OPEN_SIDEBAR } from '../../types'
 import { UIContext, uiReducer } from './'
 
 const UI_INITIAL_STATE = {
-  sideMenuOpen: false
+  sideMenuOpen: false,
+  isAdding: false
 }
 
 export const UiProvider = ({ children }) => {
@@ -18,9 +19,13 @@ export const UiProvider = ({ children }) => {
     dispatch({ type: UI_CLOSE_SIDEBAR })
   }
 
+  const setIsAdding = (flag) => {
+    dispatch({ type: UI_ADD_ENTRY, payload: flag })
+  }
+
 
   return (
-    <UIContext.Provider value={{ ...state, openSidebar, closeSidebar }}>
+    <UIContext.Provider value={{ ...state, openSidebar, closeSidebar, setIsAdding }}>
       {children}
     </UIContext.Provider>
   )

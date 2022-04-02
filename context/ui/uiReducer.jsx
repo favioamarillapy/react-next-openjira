@@ -1,4 +1,4 @@
-import { UI_CLOSE_SIDEBAR, UI_OPEN_SIDEBAR } from '../../types';
+import { UI_ADD_ENTRY, UI_CLOSE_SIDEBAR, UI_OPEN_SIDEBAR } from '../../types';
 
 export const uiReducer = (state, action) => {
 
@@ -10,6 +10,11 @@ export const uiReducer = (state, action) => {
     case UI_CLOSE_SIDEBAR:
       return { ...state, sideMenuOpen: false }
       break;
+
+    case UI_ADD_ENTRY:
+      return { ...state, isAdding: action.payload }
+      break;
+
 
     default:
       return state

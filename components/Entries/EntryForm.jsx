@@ -4,12 +4,14 @@ import { AddOutlined, CloseOutlined, SaveOutlined } from '@mui/icons-material'
 import { Box, Button, TextField } from '@mui/material'
 
 import { EntryContext } from '../../context/entries'
+import { UIContext } from '../../context/ui'
 
 export const EntryForm = () => {
 
+  const { isAdding, setIsAdding } = useContext(UIContext)
+
   const { addEntry } = useContext(EntryContext)
 
-  const [isAdding, setIsAdding] = useState(false)
   const [inputValue, setInputValue] = useState('')
   const [touched, setTouched] = useState(false)
 
