@@ -3,7 +3,7 @@ import { useContext, useState } from 'react'
 import { AddOutlined, CloseOutlined, SaveOutlined } from '@mui/icons-material'
 import { Box, Button, TextField } from '@mui/material'
 
-import { EntryContext } from '../../context/entries';
+import { EntryContext } from '../../context/entries'
 
 export const EntryForm = () => {
 
@@ -24,6 +24,9 @@ export const EntryForm = () => {
     if (inputValue.length == 0) return
 
     addEntry(inputValue)
+    setTouched(false)
+    setInputValue('')
+    setIsAdding(false)
   }
 
   return (
