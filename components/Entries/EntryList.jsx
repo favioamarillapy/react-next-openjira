@@ -2,11 +2,16 @@ import { useContext, useMemo } from 'react';
 import { List, Paper } from '@mui/material'
 import { EntryCard } from '.'
 import { EntryContext } from '../../context/entries'
+import { UIContext } from '../../context/ui';
+
+import styles from './EntryList.module.css'
 
 
 export const EntryList = ({ status }) => {
 
   const { entries } = useContext(EntryContext);
+  const { isDragging } = useContext(UIContext);
+
   const entriesByStatus =
     useMemo(() => entries.filter(entry => entry.status === status), [entries])
 
@@ -23,6 +28,7 @@ export const EntryList = ({ status }) => {
     <div
       onDrop={onDrop}
       onDragOver={allowDrop}
+      className={isDragging ? styles.dragging : ''}
     >
       <Paper sx={{
         height: 'calc(100vh - 180px)',
@@ -32,7 +38,7 @@ export const EntryList = ({ status }) => {
         marginRight: 1
       }}>
 
-        <List sx={{ opacity: 1, padding: 1 }}>
+        <List sx={{ opacity: isDragging ? 0.3 : 1, padding: 1, transition: 'all .3s' }}>
           {
             entriesByStatus.map(entry => (
               <EntryCard key={entry._id} {...entry} />

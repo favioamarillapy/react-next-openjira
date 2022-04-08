@@ -1,10 +1,11 @@
 import { useReducer } from 'react'
-import { UI_ADD_ENTRY, UI_CLOSE_SIDEBAR, UI_OPEN_SIDEBAR } from '../../types'
+import { UI_ADD_ENTRY, UI_CLOSE_SIDEBAR, UI_END_DRAGGING, UI_OPEN_SIDEBAR, UI_START_DRAGGING } from '../../types'
 import { UIContext, uiReducer } from './'
 
 const UI_INITIAL_STATE = {
   sideMenuOpen: false,
-  isAdding: false
+  isAdding: false,
+  isDragging: false
 }
 
 export const UiProvider = ({ children }) => {
@@ -23,9 +24,20 @@ export const UiProvider = ({ children }) => {
     dispatch({ type: UI_ADD_ENTRY, payload: flag })
   }
 
+  const startDragging = () => {
+    dispatch({ type: UI_START_DRAGGING })
+  }
+
+  const endDragging = () => {
+    dispatch({ type: UI_END_DRAGGING })
+  }
 
   return (
-    <UIContext.Provider value={{ ...state, openSidebar, closeSidebar, setIsAdding }}>
+    <UIContext.Provider value={{
+      ...state,
+      openSidebar, closeSidebar, setIsAdding,
+      startDragging, endDragging
+    }}>
       {children}
     </UIContext.Provider>
   )

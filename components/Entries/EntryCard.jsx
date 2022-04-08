@@ -1,15 +1,18 @@
 import { Card, CardActionArea, CardActions, CardContent, Paper, Typography } from '@mui/material'
-import React from 'react'
+import React, { useContext } from 'react'
+import { UIContext } from '../../context/ui';
 
 export const EntryCard = ({ _id, description, status, createdAt }) => {
 
+  const { startDragging, endDragging } = useContext(UIContext);
+
   const onDragStart = (e) => {
-    console.log(e);
     e.dataTransfer.setData('_id', _id)
+    startDragging()
   }
 
   const onDragEnd = () => {
-
+    endDragging()
   }
 
   return (
