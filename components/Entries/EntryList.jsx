@@ -10,8 +10,20 @@ export const EntryList = ({ status }) => {
   const entriesByStatus =
     useMemo(() => entries.filter(entry => entry.status === status), [entries])
 
+
+  const onDrop = (e) => {
+    const _id = e.dataTransfer.getData('_id')
+  }
+
+  const allowDrop = (e) => {
+    e.preventDefault()
+  }
+
   return (
-    <div>
+    <div
+      onDrop={onDrop}
+      onDragOver={allowDrop}
+    >
       <Paper sx={{
         height: 'calc(100vh - 180px)',
         overflowY: 'scroll',
