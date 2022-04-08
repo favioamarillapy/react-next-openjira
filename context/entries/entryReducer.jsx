@@ -1,21 +1,27 @@
-import { ENTRY_LIST, ENTRY_ADD } from '../../types';
+import { ENTRY_LIST, ENTRY_ADD, ENTRY_UPDATED } from '../../types';
 
 export const entryReducer = (state, action) => {
 
-  console.log(state, action);
 
   switch (action.type) {
     case ENTRY_LIST:
       return { ...state }
-      break;
 
     case ENTRY_ADD:
       return { state, entries: [...state.entries, action.payload] }
-      break;
+
+    case ENTRY_UPDATED:
+      return {
+        ...state,
+        entries: state.entries.map(entry => {
+          if (entry._id === action.payload._id) return action.payload
+          if (entry._id !== action.payload._id) return entry
+        })
+      }
+
 
     default:
       return state
-      break;
   }
 
 }

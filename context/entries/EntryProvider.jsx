@@ -1,6 +1,6 @@
 import React, { useReducer } from 'react'
 import { v4 as uuidv4 } from 'uuid'
-import { ENTRY_ADD } from '../../types'
+import { ENTRY_ADD, ENTRY_UPDATED } from '../../types'
 
 import { entryReducer, EntryContext } from './'
 
@@ -42,8 +42,15 @@ export const EntryProvider = ({ children }) => {
     dispatch({ type: ENTRY_ADD, payload: newentry })
   }
 
+  const updatedEntry = (entry) => {
+    dispatch({ type: ENTRY_UPDATED, payload: entry })
+  }
+
   return (
-    <EntryContext.Provider value={{ ...state, addEntry }}>
+    <EntryContext.Provider value={{
+      ...state,
+      addEntry, updatedEntry
+    }}>
       {children}
     </EntryContext.Provider>
   )

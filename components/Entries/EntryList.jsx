@@ -9,8 +9,8 @@ import styles from './EntryList.module.css'
 
 export const EntryList = ({ status }) => {
 
-  const { entries } = useContext(EntryContext);
-  const { isDragging } = useContext(UIContext);
+  const { entries, updatedEntry } = useContext(EntryContext);
+  const { isDragging, endDragging } = useContext(UIContext);
 
   const entriesByStatus =
     useMemo(() => entries.filter(entry => entry.status === status), [entries])
@@ -18,6 +18,11 @@ export const EntryList = ({ status }) => {
 
   const onDrop = (e) => {
     const _id = e.dataTransfer.getData('_id')
+    const entry = entries.find(e => e._id === _id)
+    entry.status = status
+
+    updatedEntry(entry)
+    endDragging()
   }
 
   const allowDrop = (e) => {
@@ -31,6 +36,7 @@ export const EntryList = ({ status }) => {
       className={isDragging ? styles.dragging : ''}
     >
       <Paper sx={{
+        '&::-webkit-scrollbar': { display: 'none' },
         height: 'calc(100vh - 180px)',
         overflowY: 'scroll',
         backgroundColor: 'transparent',
