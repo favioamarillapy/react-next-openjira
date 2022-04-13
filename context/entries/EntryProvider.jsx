@@ -21,15 +21,16 @@ export const EntryProvider = ({ children }) => {
     refreshEntries()
   }, []);
 
-  const addEntry = (description) => {
-    const newentry = {
-      _id: uuidv4(),
+  const addEntry = async (description, status) => {
+    const newEntry = {
       createdAt: Date.now(),
       status: 'backlog',
       description
     }
 
-    dispatch({ type: ENTRY_ADD, payload: newentry })
+    const { data } = await entriesApi.post('/entries', newEntry)
+
+    dispatch({ type: ENTRY_ADD, payload: data })
   }
 
   const updatedEntry = (entry) => {
