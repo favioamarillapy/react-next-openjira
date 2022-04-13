@@ -1,35 +1,25 @@
-import React, { useReducer } from 'react'
+import React, { useEffect, useReducer } from 'react'
 import { v4 as uuidv4 } from 'uuid'
-import { ENTRY_ADD, ENTRY_UPDATED } from '../../types'
-
+import { ENTRY_ADD, ENTRY_LOAD, ENTRY_UPDATED } from '../../types'
 import { entryReducer, EntryContext } from './'
+import { entriesApi } from '../../api'
+
 
 const INITIAL_STATE = {
-  entries: [
-    {
-      _id: uuidv4(),
-      description: '42i34mn34923bsf sdfoi0909 ifjashd ds900d ',
-      status: 'backlog',
-      createdAt: Date.now()
-    },
-    {
-      _id: uuidv4(),
-      description: 'asdiahjsd ajshdklj adlkjahsdaskdoinasdbn ',
-      status: 'progress',
-      createdAt: Date.now() - 100000
-    },
-    {
-      _id: uuidv4(),
-      description: 'asda.sdopak s asd8972490823kjndsdnfs9098',
-      status: 'finished',
-      createdAt: Date.now() - 1000000
-    }
-  ]
+  entries: []
 }
 
 export const EntryProvider = ({ children }) => {
   const [state, dispatch] = useReducer(entryReducer, INITIAL_STATE)
 
+  const refreshEntries = async () => {
+    const { data } = await entriesApi.get('/entries')
+    dispatch({ type: ENTRY_LOAD, payload: data.data })
+  }
+
+  useEffect(() => {
+    refreshEntries()
+  }, []);
 
   const addEntry = (description) => {
     const newentry = {
