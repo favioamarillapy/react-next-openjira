@@ -33,7 +33,8 @@ export const EntryProvider = ({ children }) => {
     dispatch({ type: ENTRY_ADD, payload: data })
   }
 
-  const updatedEntry = (entry) => {
+  const updatedEntry = async (entry) => {
+    const { data } = await entriesApi.put('/entries/' + entry._id, entry)
     dispatch({ type: ENTRY_UPDATED, payload: entry })
   }
 
