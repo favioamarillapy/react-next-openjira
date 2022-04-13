@@ -1,5 +1,6 @@
 import { Card, CardActionArea, CardActions, CardContent, Paper, Typography } from '@mui/material'
 import React, { useContext } from 'react'
+import TimeAgo from 'timeago-react';
 import { UIContext } from '../../context/ui';
 
 export const EntryCard = ({ _id, description, status, createdAt }) => {
@@ -27,7 +28,12 @@ export const EntryCard = ({ _id, description, status, createdAt }) => {
         </CardContent>
 
         <CardActions sx={{ display: 'flex', justifyContent: 'end', paddingRight: 2 }}>
-          <Typography variant='body2'>{createdAt}</Typography>
+          <Typography variant='body2'>
+            <TimeAgo
+              datetime={new Date(createdAt)}
+              locale='en_short'
+            />
+          </Typography>
         </CardActions>
 
       </CardActionArea>
