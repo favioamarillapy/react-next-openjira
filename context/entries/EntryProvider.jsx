@@ -30,12 +30,12 @@ export const EntryProvider = ({ children }) => {
 
     const { data } = await entriesApi.post('/entries', newEntry)
 
-    dispatch({ type: ENTRY_ADD, payload: data })
+    dispatch({ type: ENTRY_ADD, payload: data.data })
   }
 
   const updatedEntry = async (entry) => {
     const { data } = await entriesApi.put('/entries/' + entry._id, entry)
-    dispatch({ type: ENTRY_UPDATED, payload: entry })
+    dispatch({ type: ENTRY_UPDATED, payload: data.data })
   }
 
   return (

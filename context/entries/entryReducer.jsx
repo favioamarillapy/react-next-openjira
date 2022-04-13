@@ -14,8 +14,8 @@ export const entryReducer = (state, action) => {
 
     case ENTRY_ADD:
       return {
-        ...state, entries:
-          [...state.entries, action.payload]
+        ...state,
+        entries: [...state.entries, action.payload]
       }
 
     case ENTRY_UPDATED:
