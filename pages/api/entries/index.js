@@ -24,14 +24,6 @@ export default async function handle(req, res) {
         res.status(400).json({ success: false, message: error.message })
       }
 
-    case 'PUT':
-      try {
-        const entry = await Entry.create(req.body)
-        res.status(201).json({ success: true, data: entry })
-      } catch (error) {
-        res.status(400).json({ success: false, message: error.message })
-      }
-
     default:
   }
 }
