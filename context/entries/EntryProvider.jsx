@@ -1,5 +1,4 @@
 import React, { useEffect, useReducer } from 'react'
-import { v4 as uuidv4 } from 'uuid'
 import { ENTRY_ADD, ENTRY_LOAD, ENTRY_UPDATED } from '../../types'
 import { entryReducer, EntryContext } from './'
 import { entriesApi } from '../../api'
