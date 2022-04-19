@@ -20,7 +20,7 @@ export default async function handle(req, res) {
         const { status, description } = req.body
         const data = await Entry.findByIdAndUpdate(id, { status, description }, { runValidators: true, new: true })
 
-        res.status(201).json({ success: true, data: entry })
+        res.status(201).json({ success: true, data })
       } catch (error) {
         res.status(400).json({ success: false, message: error.message })
       }
